@@ -1,8 +1,27 @@
-@extends('layouts.app')
+      Changing logged user view
 
-@section('content')
-<div class="container">
-    <div class="row">
+
+home.blade.php-
+
+<div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Dashboard</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                </div>
+            </div>
+        </div>
+    </div>
+>>
+<div class="row">
         <div class="col-3 p-5">
             <img src="https://instagram.fhyd11-1.fna.fbcdn.net/vp/f5e75141fefaa51eacf9df820000e50d/5D79BFC8/t51.2885-19/s320x320/22709172_932712323559405_7810049005848625152_n.jpg?_nc_ht=instagram.fhyd11-1.fna.fbcdn.net" class="rounded-circle" width="150" height="150">
         </div>
@@ -26,23 +45,3 @@
             <div class="col-4"><img src="https://instagram.fhyd11-1.fna.fbcdn.net/vp/09063aff4b9b3ec3841c02de32a303ed/5D656768/t51.2885-15/sh0.08/e35/c1.0.737.737a/s640x640/54425007_166047401053561_6189529997600999584_n.jpg?_nc_ht=instagram.fhyd11-1.fna.fbcdn.net" class="w-100"></div>
             <div class="col-4"><img src="https://instagram.fhyd11-1.fna.fbcdn.net/vp/5a85d5739c430ce3affba40f3e713a57/5D59AE8E/t51.2885-15/e35/c71.0.604.604a/29090507_358967727938098_3873193196771082240_n.jpg?_nc_ht=instagram.fhyd11-1.fna.fbcdn.net" class="w-100"></div>
 
-        </div>
-    {{-- <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div> --}}
-</div>
-@endsection
