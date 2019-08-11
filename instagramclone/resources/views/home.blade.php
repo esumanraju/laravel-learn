@@ -4,11 +4,11 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img src="https://instagram.fhyd11-1.fna.fbcdn.net/vp/f5e75141fefaa51eacf9df820000e50d/5D79BFC8/t51.2885-19/s320x320/22709172_932712323559405_7810049005848625152_n.jpg?_nc_ht=instagram.fhyd11-1.fna.fbcdn.net" class="rounded-circle" width="150" height="150">
+            <img src="/jpg/siri-profile.jpg" class="rounded-circle" width="150" height="150">
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between aligh-items-baseline">
-                <h1>{{ ('UserNameHere') }}</h1>
+                <h1>{{ ( Auth::user()->username ) }}</h1>
                 <a href="#">Add New Post</a>
             </div>
              <div class="d-flex">

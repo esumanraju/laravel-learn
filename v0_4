@@ -1,0 +1,12 @@
+tinker 
+
+php artisan tinker
+
+>>>>User::all()    gets all users records in a object format
+
+
+layouts/app.blade.php file
+
+change {{ Auth::user()->name }} to {{ Auth::user()->username }}
+
+
