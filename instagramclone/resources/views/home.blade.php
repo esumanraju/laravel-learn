@@ -8,7 +8,7 @@
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between aligh-items-baseline">
-                <h1>{{ ( Auth::user()->username ) }}</h1>
+                <h1>{{ ($user->username ) }}</h1>
                 <a href="#">Add New Post</a>
             </div>
              <div class="d-flex">
@@ -16,9 +16,9 @@
                  <div class="pr-5"><strong>23k</strong>followers</div>
                  <div class="pr-5"><strong>212</strong>following</div>
              </div>
-             <div class="pt-4 font-weight-bold">{{ ('ProfileNameHere') }}</div>
-             <div> {{ ('ProfileDescriptionHere') }}</div>
-             <div><a href="#">{{ ('ProileUrlHere') }}</a></div>
+             <div class="pt-4 font-weight-bold">{{ ($user->profile->title) }}</div>
+             <div> {{ ($user->profile->description) }}</div>
+             <div><a href="#">{{ ($user->profile->url ?? 'N/A') }}</a></div>
 
         </div>
         <div class="row pt-5">

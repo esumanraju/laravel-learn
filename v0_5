@@ -1,0 +1,131 @@
+php artisan make:controller ProfilesController
+from HomeController copy to
+ public function index()
+    {
+        return view('home');
+    }
+ProfileController 
+
+routes/web.php
+
+Route::get('/home', 'HomeController@index')->name('home');
+>>>>
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+
+in ProfilesController
+
+Note: dd(/App/User::find($user)) --- will get user info
+
+  public function index($user)
+    {
+        $user = User::find($user);
+        return view('home', [
+            'user' => $user,
+        ]);
+    }
+}
+passing values from controller to view
+
+<div class="d-flex justify-content-between aligh-items-baseline">
+                <h1>{{ ($user->username ) }}</h1>
+                <a href="#">Add New Post</a>
+            </div>
+
+
+create profiles table
+
+php artisan make:model Profile -m
+
+creates both model and migration
+ 
+  Schema::create('profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('url')->nullable();
+            $table->timestamps();
+        });
+user has profile & profile belongs to user (one to one relationship)
+now every table is connected to other so here it is connected to user above schema becomes
+
+   Schema::create('profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');   -->>profile belongs to that user id
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('url')->nullable();
+            $table->timestamps();
+
+            $table->index('user_id'); --->better serachablity and quicker queries
+        });
+
+php artisan migrate      -----> to reflect changes on table
+
+in model create public function
+  public function user()
+    {
+        return $this->belongsTo(User::class);     profile belongs to user
+    }
+to write inverse ie to given user fetch profile and fetch user if given user to do this we need to create a public function in user model
+
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+
+tinker tutorial
+
+add profile 
+php artisan tinker
+
+$profile = new \App\Profile();
+
+$profile->title = 'The is where the title goes';
+$profile->description = 'Description is given here';
+$profile->user_id = 1;
+$profile->save();
+
+
+calling user from profile
+
+$profile->user
+
+$profile 
+
+gives profile
+
+now inverse
+
+$user = App\User::find(1);
+to get user with user id 1
+
+$user->profile
+
+gives users profile table
+
+
+home.blade.php
+
+         <div class="pt-4 font-weight-bold">{{ ($user->profile->title) }}</div>
+             <div> {{ ($user->profile->description) }}</div>
+             <div><a href="#">{{ ($user->profile->url ?? 'N/A') }}</a></div>
+
+insert URL for user through tinker
+
+$user->profile->url = 'test.com'
+$user->push();              to save all insterd of saving in user it saves every thing even in relationship
+
+	
+trying to get user not in database it gives random error instered---->proilecontroller
+
+
+$user = User::findOrFail($user);
+
+
+
+
+
+
+
